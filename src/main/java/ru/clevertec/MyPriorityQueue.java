@@ -7,4 +7,6 @@ public interface MyPriorityQueue<T> {
     T peek();
 
     T poll();
+
+    T removeAt(int index);
 }

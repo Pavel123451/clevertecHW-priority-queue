@@ -50,11 +50,24 @@ public class PriorityQueue<T> implements MyPriorityQueue<T> {
         if (size == 0) {
             throw new NoSuchElementException("Priority queue is empty");
         }
-        T result = heap[0];
-        heap[0] = heap[size - 1];
+        return removeAt(0);
+    }
+
+    public T removeAt(int index) {
+        if (index < 0 || index >= size) {
+            throw new IndexOutOfBoundsException("Index out of bounds");
+        }
+        T removedValue = heap[index];
         size--;
-        siftDown(0);
-        return result;
+        if (index < size) {
+            heap[index] = heap[size];
+            siftDown(index);
+            if (heap[index] == removedValue) {
+                siftUp(index);
+            }
+        }
+        heap[size] = null;
+        return removedValue;
     }
 
     private void ensureCapacity() {
