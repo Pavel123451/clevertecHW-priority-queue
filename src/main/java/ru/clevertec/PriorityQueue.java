@@ -27,6 +27,11 @@ public class PriorityQueue<T> implements MyPriorityQueue<T> {
     }
 
     @Override
+    public int size() {
+        return size;
+    }
+
+    @Override
     public boolean isEmpty() {
         return size == 0;
     }

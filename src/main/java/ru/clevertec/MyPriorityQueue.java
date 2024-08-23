@@ -11,4 +11,6 @@ public interface MyPriorityQueue<T> {
     T removeAt(int index);
 
     boolean isEmpty();
+
+    int size();
 }
