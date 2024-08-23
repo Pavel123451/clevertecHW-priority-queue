@@ -27,6 +27,11 @@ public class PriorityQueue<T> implements MyPriorityQueue<T> {
     }
 
     @Override
+    public boolean isEmpty() {
+        return size == 0;
+    }
+
+    @Override
     public void add(T element) {
         if (element == null) {
             throw new NullPointerException("Element cannot be null");

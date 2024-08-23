@@ -9,4 +9,6 @@ public interface MyPriorityQueue<T> {
     T poll();
 
     T removeAt(int index);
+
+    boolean isEmpty();
 }
