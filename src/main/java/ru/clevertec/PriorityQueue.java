@@ -58,12 +58,26 @@ public class PriorityQueue<T> implements MyPriorityQueue<T> {
     @Override
     public T poll() {
         if (size == 0) {
-            throw new NoSuchElementException("Priority queue is empty");
+            return null;
         }
         return removeAt(0);
     }
 
-    public T removeAt(int index) {
+    @Override
+    public boolean remove(T element) {
+        if (element == null) {
+            throw new NullPointerException("Element cannot be null");
+        }
+        for (int i = 0; i < size; i++) {
+            if (heap[i].equals(element)) {
+                removeAt(i);
+                return true;
+            }
+        }
+        return false;
+    }
+
+    private T removeAt(int index) {
         if (index < 0 || index >= size) {
             throw new IndexOutOfBoundsException("Index out of bounds");
         }
@@ -108,7 +122,8 @@ public class PriorityQueue<T> implements MyPriorityQueue<T> {
             int rightChild = leftChild + 1;
             int smallestChild = leftChild;
 
-            if (rightChild < size && compare(heap[rightChild], heap[leftChild]) < 0) {
+            if (rightChild < size
+                    && compare(heap[rightChild], heap[leftChild]) < 0) {
                 smallestChild = rightChild;
             }
 
@@ -124,12 +139,6 @@ public class PriorityQueue<T> implements MyPriorityQueue<T> {
 
     @SuppressWarnings("unchecked")
     private int compare(T a, T b) {
-        if (comparator != null) {
-            return comparator.compare(a, b);
-        } else if (a instanceof Comparable) {
-            return ((Comparable<? super T>) a).compareTo(b);
-        } else {
-            throw new IllegalArgumentException("Elements must be comparable or a comparator must be provided");
-        }
+        return comparator.compare(a, b);
     }
 }

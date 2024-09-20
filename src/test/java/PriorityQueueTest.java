@@ -53,28 +53,27 @@ public class PriorityQueueTest {
     }
 
     @Test
-    public void testRemoveAt() {
-        pq.add(10);
-        pq.add(20);
-        pq.add(5);
-        pq.add(30);
+    public void testRemoveElement() {
+        PriorityQueue<Integer> queue = new PriorityQueue<>();
+        queue.add(10);
+        queue.add(20);
+        queue.add(15);
 
-        pq.removeAt(1);
-
-        assertEquals(5, pq.peek());
-        assertEquals(3, pq.size());
+        assertTrue(queue.remove(20));
+        assertEquals(2, queue.size());
+        assertFalse(queue.remove(20));
     }
 
     @Test
-    public void testRemoveAtRoot() {
-        pq.add(10);
-        pq.add(20);
-        pq.add(5);
-        pq.add(30);
+    public void testRemoveHeadElement() {
+        PriorityQueue<Integer> queue = new PriorityQueue<>();
+        queue.add(10);
+        queue.add(20);
+        queue.add(5);
 
-        pq.removeAt(0);
-
-        assertEquals(10, pq.peek());
+        assertTrue(queue.remove(5));
+        assertEquals(2, queue.size());
+        assertEquals(10, queue.peek());
     }
 
     @Test
